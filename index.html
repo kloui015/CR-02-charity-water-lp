@@ -5,15 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charity Water Landing Page</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <span class="logo">Charity:Water</span>
+            <ul class="nav-links">
+                <li><a href="#take-action">Take Action</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#why-water">Why Water?</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
+        <!-- Overlay for readability -->
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <!-- Animated Headline -->
+            <h1 class="hero-headline">BE THE DROP THAT STARTS A WAVE</h1>
+            <p class="hero-subtext">Your support helps bring clean, safe water to communities in need. Join us and make a difference today.</p>
+            <button class="donate-btn" id="donateBtn">Donate</button>
+        </div>
+        <!-- Water Drop Images -->
+        <img src="img/water-drop1.png" alt="Water Drop" class="water-drop drop1">
+        <img src="img/water-drop2.png" alt="Water Drop" class="water-drop drop2">
     </section>
+
+    <!-- Take Action Section -->
+    <section id="take-action" class="section">
+        <h2>Take Action</h2>
+        <p>Find out how you can help and get involved.</p>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>Learn more about our mission and team.</p>
+    </section>
+
+    <!-- Why Water Section -->
+    <section id="why-water" class="section">
+        <h2>Why Water?</h2>
+        <p>Discover why clean water is so important.</p>
+    </section>
+
+    <!-- Modal Popup for Donate Button -->
+    <div id="donateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Donate</h2>
+            <p>This is a mock donation popup. Thank you for your support!</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Charity:Water. All rights reserved.</p>
+        <div class="social-icons">
+            <!-- Social icons as simple links -->
+            <a href="#" aria-label="Twitter" class="icon">&#x1F426;</a>
+            <a href="#" aria-label="Facebook" class="icon">&#x1F464;</a>
+            <a href="#" aria-label="Instagram" class="icon">&#x1F33F;</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactivity and animation -->
+    <script>
+    // Animate headline on page load
+    window.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.hero-headline').classList.add('fade-in');
+        document.querySelector('.hero-subtext').classList.add('fade-in-delay');
+        document.querySelector('.donate-btn').classList.add('fade-in-delay2');
+    });
+
+    // Donate button modal logic
+    const donateBtn = document.getElementById('donateBtn');
+    const donateModal = document.getElementById('donateModal');
+    const closeModal = document.getElementById('closeModal');
+    donateBtn.onclick = function() {
+        donateModal.style.display = 'block';
+    }
+    closeModal.onclick = function() {
+        donateModal.style.display = 'none';
+    }
+    window.onclick = function(event) {
+        if (event.target == donateModal) {
+            donateModal.style.display = 'none';
+        }
+    }
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
 
     <!-- Story Section: This tells the story of the nonprofit -->
     <section class="story">
