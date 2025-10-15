@@ -1,3 +1,52 @@
+/* Horizontal navigation bar styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.07);
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 70px;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 1px;
+  margin-right: auto; /* Align to the very left */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  color: #222;
+  font-weight: 500;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-links li:hover {
+  color: #2E9DF7;
+}
+
 /* charity: water Brand Colors & Fonts
 
 Primary Colors:
@@ -18,10 +67,19 @@ Fonts:
 
 */
 
-/* 
-  Charity: Water Landing Page Styles
-  This CSS uses the provided color palette and beginner-friendly styles.
-*/
+
+/* Modern section style for info blocks */
+.info-section {
+  margin-bottom: 32px;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.07);
+  background: #fff;
+  padding: 32px 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
 /* Set up the main font and background color for the whole page */
 body {
@@ -85,10 +143,14 @@ section {
 }
 
 /* Add accent color to section headings */
+
 h2 {
-  color: #2E9DF7; /* Primary blue */
+  color: #2E9DF7;
   margin-top: 0;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Call-to-Action Section Styles */
@@ -131,10 +193,13 @@ h2 {
   transform: translateY(-2px) scale(1.04); /* Slight lift */
 }
 
-/* Add some spacing between sections */
-section {
-  margin-bottom: 20px;
+/* Logo image style */
+.logo-img {
+  height: 40px;
+  margin-right: 8px;
+  vertical-align: middle;
 }
+
 
 /* 
   Media Queries for Responsive Design
@@ -145,21 +210,22 @@ section {
 /* This media query applies styles when the screen is 600px wide or less (like on most phones) */
 @media (max-width: 600px) {
   /* Make hero section padding smaller on small screens */
-  .hero {
-    padding: 32px 8px;
-    font-size: 1em;
-  }
 
-  /* Make headline font size smaller so it fits on small screens */
-  .hero h1 {
-    font-size: 1.4em;
+  .footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 32px 0 12px 0;
+    margin-top: 48px;
+    border-radius: 18px 18px 0 0;
   }
-
-  /* Make subheadline font size smaller */
-  .hero p {
-    font-size: 1em;
+  .social-icons {
+    margin-top: 12px;
   }
-
+  .icon {
+    font-size: 2em;
+    margin: 0 12px;
+  }
   /* Make story and call-to-action sections have less padding */
   .story,
   .call-to-action,

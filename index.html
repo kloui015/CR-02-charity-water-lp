@@ -10,48 +10,35 @@
 </head>
 <body>
     <!-- Navigation Bar -->
+    <!-- Navigation Bar with logo and links -->
     <nav class="navbar">
         <div class="nav-container">
-            <span class="logo">Charity:Water</span>
+            <div class="brand">
+                <img src="img/charity-water-logo.png" alt="charity: water logo" class="logo-img">
+                <span>charity: water</span>
+            </div>
             <ul class="nav-links">
-                <li><a href="#take-action">Take Action</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#why-water">Why Water?</a></li>
+                <li>Take Action</li>
+                <li>About Us</li>
+                <li>Why Water?</li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
+    <!-- Hero Section with background image and overlay text -->
     <section class="hero">
-        <!-- Overlay for readability -->
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <!-- Animated Headline -->
-            <h1 class="hero-headline">BE THE DROP THAT STARTS A WAVE</h1>
-            <p class="hero-subtext">Your support helps bring clean, safe water to communities in need. Join us and make a difference today.</p>
+            <h1 class="hero-headline">BE THE DROP<br>THAT STARTS A WAVE</h1>
+            <p class="hero-subtext">Each dollar fuels clean water projects. Your impact flows through communities, creating lasting change.</p>
             <button class="donate-btn" id="donateBtn">Donate</button>
         </div>
-        <!-- Water Drop Images -->
-        <img src="img/water-drop1.png" alt="Water Drop" class="water-drop drop1">
-        <img src="img/water-drop2.png" alt="Water Drop" class="water-drop drop2">
-    </section>
-
-    <!-- Take Action Section -->
-    <section id="take-action" class="section">
-        <h2>Take Action</h2>
-        <p>Find out how you can help and get involved.</p>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="section">
-        <h2>About Us</h2>
-        <p>Learn more about our mission and team.</p>
-    </section>
-
-    <!-- Why Water Section -->
-    <section id="why-water" class="section">
-        <h2>Why Water?</h2>
-        <p>Discover why clean water is so important.</p>
+        <!-- Water Drop Images with rounded borders -->
+        <div class="drop-images">
+            <img src="img/water-drop1.png" alt="Water Drop" class="water-drop drop1">
+            <img src="img/water-drop2.png" alt="Water Drop" class="water-drop drop2">
+        </div>
     </section>
 
     <!-- Modal Popup for Donate Button -->
@@ -59,18 +46,43 @@
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
             <h2>Donate</h2>
-            <p>This is a mock donation popup. Thank you for your support!</p>
+            <form>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email"><br>
+                <label for="amount">Amount:</label><br>
+                <input type="number" id="amount" name="amount" min="1" max="10000"><br><br>
+                <button type="submit" class="donate-btn">Donate</button>
+            </form>
         </div>
     </div>
+
+    <!-- Take Action Section -->
+    <section id="take-action" class="info-section">
+        <h2>Take Action</h2>
+        <p>Support clean water projects and make a difference today.</p>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="info-section">
+        <h2>About Us</h2>
+        <p>Learn more about our mission and the impact of clean water.</p>
+    </section>
+
+    <!-- Why Water Section -->
+    <section id="why-water" class="info-section">
+        <h2>Why Water?</h2>
+        <p>Discover why access to clean water is so important for communities.</p>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 Charity:Water. All rights reserved.</p>
         <div class="social-icons">
-            <!-- Social icons as simple links -->
-            <a href="#" aria-label="Twitter" class="icon">&#x1F426;</a>
-            <a href="#" aria-label="Facebook" class="icon">&#x1F464;</a>
-            <a href="#" aria-label="Instagram" class="icon">&#x1F33F;</a>
+            <span class="icon">&#x1F426;</span>
+            <span class="icon">&#x1F464;</span>
+            <span class="icon">&#x1F33F;</span>
         </div>
     </footer>
 
@@ -84,18 +96,17 @@
     });
 
     // Donate button modal logic
-    const donateBtn = document.getElementById('donateBtn');
-    const donateModal = document.getElementById('donateModal');
-    const closeModal = document.getElementById('closeModal');
-    donateBtn.onclick = function() {
-        donateModal.style.display = 'block';
+    function openModal() {
+        document.getElementById('donateModal').style.display = 'block';
     }
-    closeModal.onclick = function() {
-        donateModal.style.display = 'none';
+    function closeModal() {
+        document.getElementById('donateModal').style.display = 'none';
     }
+    document.getElementById('donateBtn').onclick = openModal;
+    document.getElementById('closeModal').onclick = closeModal;
     window.onclick = function(event) {
-        if (event.target == donateModal) {
-            donateModal.style.display = 'none';
+        if (event.target == document.getElementById('donateModal')) {
+            closeModal();
         }
     }
 
@@ -109,15 +120,27 @@
             }
         });
     });
+
+    // Smooth scroll for navigation links
+    const navLinks = document.querySelectorAll('.nav-links li');
+
+    navLinks.forEach((link, index) => {
+      link.addEventListener('click', () => {
+        const sections = ['take-action', 'about-us', 'why-water'];
+        const targetSection = document.getElementById(sections[index]);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
     </script>
-</body>
-</html>
 
     <!-- Story Section: This tells the story of the nonprofit -->
     <section class="story">
         <h2>Our Story</h2>
         <p>
-         
+            Charity:Water is dedicated to bringing clean and safe drinking water to people in developing countries. Every drop counts, and every supporter helps us change lives.
+        </p>
     </section>
 
     <!-- Real-World Impact Story Section -->
@@ -141,5 +164,26 @@
         <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
         <a href="#" class="donate-button">Donate Now</a>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Charity:Water. All rights reserved.</p>
+        <div class="social-icons">
+            <!-- Social icons as simple links -->
+            <a href="#" aria-label="Twitter" class="icon">&#x1F426;</a>
+            <a href="#" aria-label="Facebook" class="icon">&#x1F464;</a>
+            <a href="#" aria-label="Instagram" class="icon">&#x1F33F;</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactivity and animation -->
+    <script>
+    // Animate headline on page load
+    window.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.hero-headline').classList.add('fade-in');
+        document.querySelector('.hero-subtext').classList.add('fade-in-delay');
+        document.querySelector('.donate-btn').classList.add('fade-in-delay2');
+    });
+    </script>
 </body>
 </html>
