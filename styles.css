@@ -109,7 +109,8 @@ section {
   background-repeat: no-repeat;
   color: #fff;                 /* White text for contrast */
   text-align: center;          /* Center the text */
-  padding: 60px 20px;          /* Add space above and below */
+  padding: 100px 20px;          /* Add space above and below */
+  height: 600px; /* Make the hero image bigger */
   border-radius: 0 0 16px 16px; /* Only round bottom corners */
 
   /* Add a dark overlay for better text readability */
@@ -200,6 +201,28 @@ h2 {
   vertical-align: middle;
 }
 
+/* Donate Bar Styles */
+.donate-bar {
+  position: relative;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.donate-bar button {
+  background: #FFC907;
+  color: #222;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.donate-bar button:hover {
+  background: #2E9DF7;
+  color: #fff;
+}
 
 /* 
   Media Queries for Responsive Design
