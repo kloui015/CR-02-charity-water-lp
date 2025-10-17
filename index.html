@@ -1,131 +1,274 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Charity:Water — Be the Drop</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#ffffff;           /* white theme */
-      --ink:#0d1b2a;          /* dark ink for text */
-      --text:#111111;         /* main text */
-      --muted:#444;           /* secondary text */
-      --brand:#ffd400;        /* charity: water yellow */
-      --cyan:#11b5e4;         /* accent */
-      --card:#f3f6fa;         /* light card surface */
-      --drop:#ffffff;         /* droplet bg */
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-      color:var(--text); background:var(--bg); line-height:1.5; overflow-x:hidden;
-    }
-    a{color:inherit; text-decoration:none}
+  <title>charity: water – Be the Drop</title>
 
-    /* NAV */
-    .nav{position:sticky; top:0; z-index:50; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05);}
-    .nav-inner{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:.9rem 1.2rem}
-    .brand{display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.2px}
-    .brand img{width:32px; height:32px}
-    .nav-links{display:flex; gap:1.25rem; font-weight:600; color:#333}
-    .nav-links a:hover{color:var(--cyan)}
-    .donate-chip{background:var(--brand); color:#111; padding:.5rem .9rem; border-radius:999px; font-weight:700; box-shadow:0 8px 20px rgba(255,212,0,.25)}
+  <!-- Substitute Fonts for Proxima Nova (Poppins) and Avenir (Nunito) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:#f4f8fb;
+      --text:#0e1420;
+      --muted:#5a6b80;
+      --brand:#00a9e0;
+      --cta:#f9c21a;
+      --cta-text:#1e1e1e;
+      --card:#ffffff;
+      --footer:#15181d;
+      --shadow:0 10px 30px rgba(0,0,0,.10);
+      --radius-2xl:28px;
+      --max:1120px;
+    }
+
+    body {
+      margin:0;
+      font-family:'Nunito','Avenir',sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    /* Header */
+    .site-header {
+      position:sticky; top:0;
+      background:#fff;
+      box-shadow:0 1px 0 rgba(16,24,40,.06);
+      z-index:50;
+    }
+    .nav {
+      max-width:var(--max);
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 20px;
+    }
+    .brand img {height:26px;}
+    .menu {display:flex; gap:32px;}
+    .menu a {text-decoration:none; color:var(--text); font-weight:600;}
+    .menu a:hover {color:var(--brand);}
 
     /* HERO */
-    .hero{position:relative; min-height:84vh; display:grid; place-items:center; overflow:hidden}
-    .hero-bg{position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2400&auto=format&fit=crop') center/cover no-repeat; transform:translateZ(0);}
-    .hero-overlay{position:absolute; inset:0; background:rgba(255,255,255,.5)}
-    .hero-grid{position:relative; z-index:1; max-width:1200px; width:100%; padding:4.5rem 1.25rem; display:grid; grid-template-columns:1.2fr .8fr; gap:2rem}
-    @media (max-width: 900px){ .hero-grid{grid-template-columns:1fr} }
-    .headline{font-size: clamp(2.2rem, 6vw, 4rem); font-weight:900; line-height:1.05; margin:0 0 1rem; color:#000;}
-    .sub{color:var(--muted); max-width:52ch}
+    .hero {
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      background:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2400&auto=format&fit=crop") center/cover no-repeat;
+      /* ↑ bright blue water ocean background */
+      overflow:hidden;
+    }
+    .hero::before {
+      content:"";
+      position:absolute; inset:0;
+      background:rgba(0, 85, 150, 0.45); /* soft blue overlay for legibility */
+    }
 
-    .donate-bar{margin-top:1.5rem; display:flex; gap:.6rem; align-items:center; max-width:560px}
-    .donate-bar input{flex:1; padding:1rem 1rem; border-radius:14px; background:#f1f1f1; border:1px solid #ccc; color:#000;}
-    .btn{border:0; cursor:pointer; border-radius:14px; padding:1rem 1.2rem; font-weight:800}
-    .btn-primary{background:var(--brand); color:#111; box-shadow:0 6px 14px rgba(255,212,0,.3)}
+    .hero-inner {
+      position:relative;
+      z-index:2;
+      max-width:var(--max);
+      width:100%;
+      display:grid;
+      grid-template-columns:1fr 340px;
+      align-items:center;
+      gap:40px;
+      padding:0 40px;
+    }
 
-    /* DROPLET SHAPE */
-    .drops{display:grid; gap:1.2rem; place-content:center; justify-items:end}
-    .drop{--size:240px; width:min(var(--size), 70vw); aspect-ratio:1/1.3; background:var(--drop); clip-path:path('M0.5,0.3 C0.2,0.6 0.1,0.9 0.5,1 C0.9,0.9 0.8,0.6 0.5,0.3 Z'); border:6px solid rgba(255,212,0,.6); overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.15)}
-    .drop img{width:100%; height:100%; object-fit:cover}
+    .hero-text {
+      text-align:center;
+    }
+    .hero-text h1 {
+      font-family:'Poppins','Proxima Nova',sans-serif;
+      font-size:56px;
+      font-weight:800;
+      line-height:1.05;
+      margin:0 0 20px;
+      text-transform:uppercase;
+    }
+    .hero-text p {
+      font-family:'Avenir','Nunito',sans-serif;
+      font-size:18px;
+      color:#e6edf3;
+      margin-bottom:30px;
+      max-width:600px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .cta {
+      background:var(--cta);
+      color:var(--cta-text);
+      font-weight:800;
+      border:none;
+      padding:14px 28px;
+      border-radius:12px;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(249,194,26,.32);
+      font-family:'Avenir','Nunito',sans-serif;
+    }
+    .cta:hover {filter:brightness(1.05)}
 
-    /* CARDS */
-    section{padding:5rem 1.25rem}
-    .container{max-width:1100px; margin:auto}
-    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem}
-    @media (max-width:900px){.cards{grid-template-columns:1fr}}
-    .card{background:var(--card); border-radius:20px; padding:1.25rem; box-shadow:0 10px 20px rgba(0,0,0,.1)}
+    /* Oval Images */
+    .ovals {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:40px;
+    }
+    .oval {
+      width:260px; height:320px;
+      border-radius:45% / 50%;
+      overflow:hidden;
+      border:6px solid #cfe7f5;
+      box-shadow:var(--shadow);
+    }
+    .oval img {
+      width:100%; height:100%; object-fit:cover;
+      filter:saturate(1.05);
+    }
 
-    footer{text-align:center; padding:2rem; font-size:.9rem; color:#555}
+    /* Cards */
+    .section {
+      max-width:var(--max);
+      margin:60px auto;
+      padding:0 20px;
+    }
+    .cards {display:grid; gap:26px;}
+    .card {
+      background:var(--card);
+      border-radius:var(--radius-2xl);
+      box-shadow:var(--shadow);
+      padding:40px 32px;
+      text-align:center;
+    }
+    .card h3 {
+      margin:0 0 8px;
+      font-size:28px;
+      color:#0ea5c6;
+      font-family:'Poppins','Proxima Nova',sans-serif;
+    }
+    .card p {
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+      font-family:'Avenir','Nunito',sans-serif;
+    }
+
+    /* Footer */
+    .footer {
+      background:var(--footer);
+      color:#d6dde6;
+      text-align:center;
+      padding:38px 20px 46px;
+    }
+    .emoji-row {font-size:22px; letter-spacing:10px;}
+
+    /* Modal */
+    .modal-backdrop {
+      position:fixed; inset:0; background:rgba(0,0,0,.45);
+      display:none; align-items:center; justify-content:center;
+      z-index:1000;
+    }
+    .modal {
+      background:#fff;
+      color:#0f1720;
+      border-radius:18px;
+      box-shadow:0 24px 70px rgba(0,0,0,.25);
+      padding:28px 26px;
+      text-align:center;
+      position:relative;
+    }
+    .close-x {
+      position:absolute; top:10px; right:12px;
+      border:none; background:transparent; font-size:22px;
+      cursor:pointer; color:#334155;
+    }
+
+    @media (max-width:980px) {
+      .hero-inner {grid-template-columns:1fr;}
+      .ovals {flex-direction:row; justify-content:center; gap:20px;}
+      .oval {width:180px; height:220px;}
+      .hero-text h1 {font-size:40px;}
+    }
   </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="#top">
-        <img src="ef583a93-ab06-4a3b-ab5e-6565ffbebf11.png" alt="Charity Water Logo" />
-        Charity:Water
-      </a>
-      <nav class="nav-links">
+  <header class="site-header">
+    <nav class="nav">
+      <div class="brand">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Charity_Water_logo.png/320px-Charity_Water_logo.png" alt="charity water logo">
+      </div>
+      <div class="menu">
         <a href="#take-action">Take Action</a>
         <a href="#about">About Us</a>
-        <a href="#why">Why Water?</a>
-        <a class="donate-chip" href="#donate">Donate</a>
-      </nav>
-    </div>
+        <a href="#why-water">Why Water?</a>
+      </div>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-grid container">
-        <div>
-          <h1 class="headline">BE THE DROP<br/>THAT STARTS A WAVE</h1>
-          <p class="sub">Each dollar fuels clean water projects. Your impact flows through communities, creating lasting change.</p>
-          <div class="donate-bar" id="donate">
-            <input type="text" placeholder="Every drop counts — Give hope today!" />
-            <button class="btn btn-primary">Donate</button>
-          </div>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Be the Drop<br>That Starts a Wave</h1>
+        <p>Each dollar fuels clean water projects. Your impact flows through communities, creating lasting change.</p>
+        <button class="cta" id="donateBtn">Donate</button>
+      </div>
+      <div class="ovals">
+        <div class="oval">
+          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop" alt="Flowing clean water">
         </div>
-        <div class="drops">
-          <figure class="drop"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop" alt="Drop image" /></figure>
-          <figure class="drop" style="--size:220px"><img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1200&auto=format&fit=crop" alt="Drop image" /></figure>
+        <div class="oval">
+          <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?q=80&w=1200&auto=format&fit=crop" alt="Waterfall in nature">
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="take-action" class="container">
-      <div class="cards">
-        <article class="card"><h3>Donate Monthly</h3><p>Join a global community funding sustainable water solutions with transparency and real project updates.</p></article>
-        <article class="card"><h3>Start a Campaign</h3><p>Rally friends and family. Birthdays, races, or school events can bring clean water to an entire village.</p></article>
-        <article class="card"><h3>Corporate Giving</h3><p>Match gifts, sponsor wells, and engage your team through purpose‑driven programs and volunteer days.</p></article>
-      </div>
-    </section>
-
-    <section id="about" class="container">
-      <h2>About Us</h2>
-      <p>We imagine a world where every person has access to clean and safe drinking water. Our local partners build and maintain community‑owned systems while we provide training and transparent reporting.</p>
-    </section>
-
-    <section id="why" class="container">
-      <h2>Why Water?</h2>
-      <p>Clean water changes everything — health, education, and livelihoods. When water is close and safe, children can attend school and families can thrive.</p>
-      <div class="cards">
-        <article class="card"><h3>Health</h3><p>Reduces waterborne disease and improves nutrition.</p></article>
-        <article class="card"><h3>Education</h3><p>Kids — especially girls — spend less time collecting water.</p></article>
-        <article class="card"><h3>Economy</h3><p>More time for work means stronger, more resilient communities.</p></article>
-      </div>
-    </section>
+  <main class="section">
+    <div class="cards" id="take-action">
+      <article class="card">
+        <h3>Take Action</h3>
+        <p>Support clean water projects and make a difference today.</p>
+      </article>
+      <article class="card" id="about">
+        <h3>About Us</h3>
+        <p>Learn more about our mission and the impact of clean water.</p>
+      </article>
+      <article class="card" id="why-water">
+        <h3>Why Water?</h3>
+        <p>Discover why access to clean water is so important for communities.</p>
+      </article>
+    </div>
   </main>
 
-  <footer>
-    © 2025 Charity:Water. All rights reserved.
+  <footer class="footer">
+    <div class="emoji-row">🕊️ 👤 🌿</div>
+    <div>© 2025 Charity:Water. All rights reserved.</div>
   </footer>
+
+  <div class="modal-backdrop" id="backdrop">
+    <div class="modal">
+      <button class="close-x" id="closeModal">×</button>
+      <h4>Thank you for your support!</h4>
+      <p>This is a mock donation popup. No real payment will be processed.</p>
+    </div>
+  </div>
+
+  <script>
+    const donateBtn = document.getElementById('donateBtn');
+    const backdrop = document.getElementById('backdrop');
+    const closeBtn = document.getElementById('closeModal');
+
+    donateBtn.addEventListener('click', ()=> backdrop.style.display='flex');
+    closeBtn.addEventListener('click', ()=> backdrop.style.display='none');
+    backdrop.addEventListener('click', e => {
+      if (e.target === backdrop) backdrop.style.display='none';
+    });
+  </script>
 </body>
 </html>
